@@ -1,0 +1,31 @@
+﻿@model Hospital_Project.Models.ViewModels.UpdateAdmission
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create Admission</h2>
+<form action="/Admission/Create" method="POST">
+    <div>
+        <label>Room:</label> <input type="text" name="Room" />
+    </div>
+    <div>
+        <label>Bed:</label> <input type="text" name="Bed" />
+    </div>
+    <div>
+        <label>Doctor:</label>
+        <select name="DrId">
+            @foreach(var doctors in Model.DoctorOptions)
+            {
+                <option value="@doctors.DrId">Dr @doctors.DrFname  @doctors.DrLname</option>
+
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Add Admission" />
+
+    </div>
+</form>
+
+

@@ -1,0 +1,31 @@
+﻿@model Hospital_Project.Models.ViewModels.GreetingCardDetails
+@{
+    ViewBag.Title = "View";
+}
+<nav class="buttons">
+    <ul>
+        <li><a href="/GreetingCard/List">Go back to list</a></li>
+        <li><a href="/GreetingCard/Edit/@Model.SelectedCard.CardId">Update</a></li>
+        <li><a style="color:#ab2020;" href="/GreetingCard/DeleteConfirm/@Model.SelectedCard.CardId">Delete</a></li>
+    </ul>
+        
+</nav>
+
+    
+        @{
+            string imageurl = "/Content/Images/GreetingCards/default.jpg";
+            if (Model.SelectedCard.CardHasPic)
+            {
+                imageurl = "/Content/Images/GreetingCards/" + Model.SelectedCard.CardId + "." + Model.SelectedCard.PicExtension;
+            }
+        }
+        <div class="cardcontainer">
+            <div class="greetingcard"><img  alt="@Model.SelectedCard.CardMessage" src="@imageurl" height="500" width="500"/></div>
+            <div class="cardmessage">
+                <h2>@Html.Raw(Model.SelectedCard.CardMessage)</h2>
+            </div>
+            <div class="sender">By @Model.SelectedCard.SenderFirstName @Model.SelectedCard.SenderLastName</div>
+            <div class="receiver">To @Model.SelectedCard.Room  @Model.SelectedCard.Bed</div>
+        </div>
+    
+    

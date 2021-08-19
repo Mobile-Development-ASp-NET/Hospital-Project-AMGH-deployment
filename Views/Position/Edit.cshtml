@@ -1,0 +1,50 @@
+﻿@model Hospital_Project.Models.ViewModels.UpdatePosition
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Update Postion</h2>
+<nav>
+    <ul>
+        <li><a href="/Position/List">Back to List</a></li>
+        <li><a style="color:red;" href="/Position/DeleteConfirm/@Model.SelectedPosition.PositionID">Delete</a></li>
+    </ul>
+</nav>
+<form action="/Position/Update/@Model.SelectedPosition.PositionID" method="post">
+    <div style="display:none;">
+        <input type="text" name="PositionID" value="@Model.SelectedPosition.PositionID" />
+    </div>
+    <div>
+        <label>Name:</label> <input type="text" name="PositionJob" id="PositionJob" value="@Model.SelectedPosition.PositionJob" data-val="true" data-val-required="Please Enter A Job Name." />
+        @Html.ValidationMessageFor(model => model.SelectedPosition.PositionJob, "", new { @class = "text-danger", data_valmsg_for = "PositionJob" })
+    </div>
+    <div>
+        <label>Description:</label> <input type="text" name="PositionDescription" id="PositionDescription" value="@Model.SelectedPosition.PositionDescription" data-val="true" data-val-required="Please Enter The Job Description." />
+        @Html.ValidationMessageFor(model => model.SelectedPosition.PositionDescription, "", new { @class = "text-danger", data_valmsg_for = "PositionDescription" })
+    </div>
+    <div>
+        <label>Posted Date:</label> <input type="date" name="PositionPostedDate" id="PositionPostedDate" value="@Model.SelectedPosition.PositionPostedDate" data-val="true" data-val-required="Please Enter The Posted Date For The Job." />
+        @Html.ValidationMessageFor(model => model.SelectedPosition.PositionPostedDate, "", new { @class = "text-danger", data_valmsg_for = "PositionPostedDate" })
+    </div>
+    <div>
+        <label>Application Deadline</label> <input type="date" name="ApplicationDeadLine" id="ApplicationDeadLine" value="@Model.SelectedPosition.ApplicationDeadLine" data-val="true" data-val-required="Please Enter The Deadline For The Job." />
+        @Html.ValidationMessageFor(model => model.SelectedPosition.ApplicationDeadLine, "", new { @class = "text-danger", data_valmsg_for = "ApplicationDeadLine" })
+    </div>
+    <div>
+        <label>Change Department Assign:</label>
+        <select name="PositionID">
+            @foreach (var departments in Model.DepartmentOptions)
+            {
+                var selected = "";
+                if (departments.DepartmentID == Model.SelectedPosition.DepartmentID)
+                {
+                    selected = "selected";
+                }
+                <option value="@departments.DepartmentID" @selected>@departments.DepartmentName</option>
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Update Position" />
+    </div>
+</form>

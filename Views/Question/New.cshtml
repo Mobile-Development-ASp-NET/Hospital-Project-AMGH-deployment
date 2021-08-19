@@ -1,0 +1,20 @@
+﻿@model Hospital_Project.Models.QuestionDto
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>New Question</h2>
+<form action="/Question/Create" method="POST">
+    <div>
+        <label>Question Title:</label><input type="text" name="QuestionTitle" data-val="true" data-val-required="Please enter a title" />
+        @Html.ValidationMessageFor(model => model.QuestionTitle, "", new { @class = "text-danger", data_valmsg_for = "QuestionTitle" })
+    </div>
+    <div>
+        <label>Question Description:</label>
+        <textarea name="QuestionyDescription"></textarea>
+    </div>
+    <div>
+        <input type="submit" value="add Question" />
+    </div>
+</form>
+
